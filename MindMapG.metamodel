@@ -1,0 +1,327 @@
+{
+	"types": {
+		"MindMap": [
+			{
+				"name": "titre",
+				"type": "string",
+				"default": ""
+			}
+		],
+		"Marker": [
+			{
+				"name": "Symbol",
+				"type": "string",
+				"default": ""
+			}
+		],
+		"Topic": [
+			{
+				"name": "name",
+				"type": "string",
+				"default": ""
+			}
+		],
+		"CentralTopic": [
+			{
+				"name": "name",
+				"type": "string",
+				"default": ""
+			}
+		],
+		"MainTopic": [
+			{
+				"name": "name",
+				"type": "string",
+				"default": ""
+			}
+		],
+		"SubTopic": [
+			{
+				"name": "name",
+				"type": "string",
+				"default": ""
+			}
+		],
+		"Possede": [],
+		"a": [],
+		"Contient": [],
+		"Comporte": []
+	},
+	"constraints": [
+		{
+			"name": "noAbstractInstances",
+			"event": "pre-create",
+			"code": "false",
+			"targetType": "Topic"
+		}
+	],
+	"actions": [],
+	"cardinalities": {
+		"MindMap": [
+			{
+				"dir": "out",
+				"type": "Possede",
+				"min": "1",
+				"max": "1"
+			},
+			{
+				"dir": "out",
+				"type": "a",
+				"min": "0",
+				"max": "Infinity"
+			}
+		],
+		"Marker": [
+			{
+				"dir": "in",
+				"type": "a",
+				"min": "1",
+				"max": "1"
+			},
+			{
+				"dir": "in",
+				"type": "Contient",
+				"min": "1",
+				"max": "1"
+			}
+		],
+		"Topic": [
+			{
+				"dir": "out",
+				"type": "Contient",
+				"min": "0",
+				"max": "Infinity"
+			}
+		],
+		"CentralTopic": [
+			{
+				"dir": "in",
+				"type": "Possede",
+				"min": "1",
+				"max": "1"
+			},
+			{
+				"dir": "out",
+				"type": "Comporte",
+				"min": "0",
+				"max": "Infinity"
+			},
+			{
+				"dir": "out",
+				"type": "Contient",
+				"min": "0",
+				"max": "Infinity"
+			}
+		],
+		"MainTopic": [
+			{
+				"dir": "in",
+				"type": "Comporte",
+				"min": "1",
+				"max": "1"
+			},
+			{
+				"dir": "out",
+				"type": "Comporte",
+				"min": "0",
+				"max": "Infinity"
+			},
+			{
+				"dir": "out",
+				"type": "Contient",
+				"min": "0",
+				"max": "Infinity"
+			}
+		],
+		"SubTopic": [
+			{
+				"dir": "in",
+				"type": "Comporte",
+				"min": "1",
+				"max": "1"
+			},
+			{
+				"dir": "in",
+				"type": "Comporte",
+				"min": "1",
+				"max": "1"
+			},
+			{
+				"dir": "out",
+				"type": "Comporte",
+				"min": "0",
+				"max": "Infinity"
+			},
+			{
+				"dir": "out",
+				"type": "Contient",
+				"min": "0",
+				"max": "Infinity"
+			}
+		],
+		"Possede": [
+			{
+				"dir": "in",
+				"type": "MindMap",
+				"min": "0",
+				"max": "1"
+			},
+			{
+				"dir": "out",
+				"type": "CentralTopic",
+				"min": "0",
+				"max": "1"
+			}
+		],
+		"a": [
+			{
+				"dir": "in",
+				"type": "MindMap",
+				"min": "0",
+				"max": "1"
+			},
+			{
+				"dir": "out",
+				"type": "Marker",
+				"min": "0",
+				"max": "1"
+			}
+		],
+		"Contient": [
+			{
+				"dir": "in",
+				"type": "Topic",
+				"min": "0",
+				"max": "1"
+			},
+			{
+				"dir": "out",
+				"type": "Marker",
+				"min": "0",
+				"max": "1"
+			},
+			{
+				"dir": "in",
+				"type": "CentralTopic",
+				"min": "0",
+				"max": "1"
+			},
+			{
+				"dir": "in",
+				"type": "MainTopic",
+				"min": "0",
+				"max": "1"
+			},
+			{
+				"dir": "in",
+				"type": "SubTopic",
+				"min": "0",
+				"max": "1"
+			}
+		],
+		"Comporte": [
+			{
+				"dir": "in",
+				"type": "CentralTopic",
+				"min": "0",
+				"max": "1"
+			},
+			{
+				"dir": "out",
+				"type": "MainTopic",
+				"min": "0",
+				"max": "1"
+			},
+			{
+				"dir": "in",
+				"type": "MainTopic",
+				"min": "0",
+				"max": "1"
+			},
+			{
+				"dir": "out",
+				"type": "SubTopic",
+				"min": "0",
+				"max": "1"
+			},
+			{
+				"dir": "in",
+				"type": "SubTopic",
+				"min": "0",
+				"max": "1"
+			}
+		]
+	},
+	"legalConnections": {
+		"MindMap": {
+			"CentralTopic": [
+				"Possede"
+			],
+			"Marker": [
+				"a"
+			]
+		},
+		"Topic": {
+			"Marker": [
+				"Contient"
+			]
+		},
+		"CentralTopic": {
+			"MainTopic": [
+				"Comporte"
+			],
+			"SubTopic": [
+				"Comporte"
+			],
+			"Marker": [
+				"Contient"
+			]
+		},
+		"MainTopic": {
+			"MainTopic": [
+				"Comporte"
+			],
+			"SubTopic": [
+				"Comporte"
+			],
+			"Marker": [
+				"Contient"
+			]
+		},
+		"SubTopic": {
+			"MainTopic": [
+				"Comporte"
+			],
+			"SubTopic": [
+				"Comporte"
+			],
+			"Marker": [
+				"Contient"
+			]
+		}
+	},
+	"connectorTypes": {
+		"Possede": "visual",
+		"a": "visual",
+		"Contient": "visual",
+		"Comporte": "visual"
+	},
+	"types2parentTypes": {
+		"MindMap": [],
+		"Marker": [],
+		"Topic": [],
+		"CentralTopic": [
+			"Topic"
+		],
+		"MainTopic": [
+			"Topic"
+		],
+		"SubTopic": [
+			"Topic"
+		],
+		"Possede": [],
+		"a": [],
+		"Contient": [],
+		"Comporte": []
+	}
+}
